@@ -59,7 +59,7 @@
 					},
 					{
 						id: 'employee',
-						label: '第三方'
+						label: '厂家'
 					},
 					{
 						id: 'owner',
