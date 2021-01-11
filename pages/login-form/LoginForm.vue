@@ -1,7 +1,11 @@
 <template>
 	<view>
-		<view class="solid-bottom text-sl padding" style="margin-top: 160rpx;">
-			<text>欢迎使用</text>
+		<view class="solid-bottom text-xl padding" style="margin-top: 160rpx;">
+			<text>随州汽车监控程序</text>
+		</view>
+		<!--小程序轮播图-->
+		<view>
+			<text>这里放轮播图</text>
 		</view>
 		<form ref="loginref" :model="user">
 			<!--角色选择 -->
@@ -51,7 +55,7 @@
 				showPassword: true,
 				array: [{
 						id: 'staff',
-						label: '海关'
+						label: '车厂'
 					},
 					{
 						id: 'employee',
