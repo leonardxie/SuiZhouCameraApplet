@@ -55,7 +55,7 @@
 				showPassword: true,
 				array: [{
 						id: 'staff',
-						label: '车厂'
+						label: '经销商'
 					},
 					{
 						id: 'employee',
