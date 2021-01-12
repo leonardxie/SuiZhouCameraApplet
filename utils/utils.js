@@ -17,8 +17,8 @@ Date.prototype.Format = function(fmt) {
 }
 
 //key
-let sessionIDName = "jgcy-sessionid"
-let realNameKey="RealName"
+let sessionIDName = "SuiZhouCameraApplet-sessionid"
+let realNameKey="Phone"
 let loginTypeKey="LoginType"
 let userNameKey="UserName"
 let userIdKey="UserId"

@@ -1,15 +1,12 @@
 <template>
 	<view>
-		<view class="solid-bottom text-xl padding" style="margin-top: 160rpx;">
-			<text>随州汽车监控程序</text>
-		</view>
-		<!--小程序轮播图-->
-		<view>
-			<text>这里放轮播图</text>
+		<view class="solid-bottom text-xl padding" style="margin-top: 70rpx;margin-bottom: -30rpx;">
+			<text>随州汽车监控小程序</text>
+			<image src="../../static/car_pic.jpg" mode="aspectFit" style="width: 100%;"></image>
 		</view>
 		<form ref="loginref" :model="user">
 			<!--角色选择 -->
-			<view class="cu-form-group " style="margin-top: 50rpx;margin-left: 5%;width: 90%;">
+			<view class="cu-form-group " style="margin-left: 5%;width: 90%;">
 				<label style="font-size: 120%;width: 155rpx;">角色选择</label>
 				<view class="cu-list grid col-3"></view>
 				<picker mode='selector' @change="bindPickerChange" :range="array" :range-key="'label'">
@@ -17,20 +14,20 @@
 				</picker>
 			</view>
 			<!-- 账号 -->
-			<view class="cu-form-group" style="margin-top: 50rpx;margin-left: 5%;width: 90%;">
+			<view class="cu-form-group" style="margin-top: 20rpx;margin-left: 5%;width: 90%;">
 				<view class="title" style="font-size: 120%;width: 155rpx;">账号 </view>
-				<input placeholder="请输入账号" type='text' v-model="user.username"></input>
+				<input placeholder="请输入账号" type='text' v-model="user.phone"></input>
 				<text class="cuIcon-people lg text-gray"></text>
 			</view>
 			<!-- 密码 -->
-			<view class="cu-form-group" style="margin-top: 50rpx;margin-left: 5%;width: 90%;">
+			<view class="cu-form-group" style="margin-top: 20rpx;margin-left: 5%;width: 90%;">
 				<view class="title" style="font-size: 120%;width: 155rpx;">密码 </view>
 				<input placeholder="请输入密码" password v-model="user.password" type="text" :password="showPassword" value=""
 				 placeholder-class="pstyle"> </input>
 				<text :class="[!showPassword?'cuIcon-attention lg text-gray':'cuIcon-attentionforbid text-gray']" @click="showPwd"></text>
 			</view>
 			<!-- 验证码 -->
-			<view class="flex p-xs margin-bottom-sm mb-sm" style="height: 40px;margin-left: 5%;margin-right: 5%;margin-top: 50rpx;">
+			<view class="flex p-xs margin-bottom-sm mb-sm" style="height: 40px;margin-left: 5%;margin-right: 5%;margin-top: 20rpx;">
 				<view class="cu-form-group flex-twice">
 					<view class="title" style="font-size: 120%;width: 155rpx;">验证码 </view>
 					<input placeholder="请输入验证码" v-model="user.code"></input>
@@ -53,23 +50,24 @@
 		data() {
 			return {
 				showPassword: true,
-				array: [{
-						id: 'staff',
+				array: [
+					{
+						id: '2',
 						label: '经销商'
 					},
 					{
-						id: 'employee',
-						label: '厂家'
+						id: '3',
+						label: '车厂管理员'
 					},
-					{
-						id: 'owner',
-						label: '货主'
-					}
+					{//1系统管理员，2经销商，3车厂管理员，4客户
+							id: '1',
+							label: '系统管理员'
+						}
 				],
 				index: 0,
 				user: {
 					role: '',
-					username: '',
+					phone: '',
 					password: '',
 					code: '',
 					ctoken: ''
@@ -93,11 +91,10 @@
 			showPwd: function() {
 				this.showPassword = !this.showPassword;
 			},
-			//验证码
+			//获取验证码
 			getindentify() {
 				const that = this;
 				uni.request({
-
 					method: 'get',
 					url: this.$request.baseUrl + '/public/captcha',
 					header: {
@@ -118,19 +115,20 @@
 			// 登录验证
 			login() {
 				let _this = this;
-				if (this.user.username === '' || this.user.password === '') {
+				if (this.user.phone === '' || this.user.password === '') {
 					uni.showToast({
-						title: '用户名或密码为空',
+						title: '账号或密码为空',
 						duration: 2000
 					});
 				} else {
 					let Data = {
-						username: this.user.username.replace(/\s+/g, ''),
+						phone: this.user.phone.replace(/\s+/g, ''),
 						password: this.user.password.replace(/\s+/g, ''),
-						loginType: this.array[this.index].id,
+						role: this.array[this.index].id,
 						code: this.user.code,
 						cToken: this.user.ctoken,
 					};
+					console.log(Data)
 					uni.request({
 						method: 'post',
 						url: this.$request.baseUrl + '/public/login',
@@ -142,7 +140,7 @@
 							if (res.data.code === 0) {
 								//传递sessionID
 								utils.storageSessionID(res.data.data.sessionId);
-								utils.storageRealName(res.data.data.realName);
+								utils.storageRealName(res.data.data.phone);
 								utils.storageLoginType(res.data.data.loginType);
 								utils.storageUserName(res.data.data.userName);
 								utils.storageUserId(res.data.data.userId);
@@ -170,34 +168,11 @@
 									title: '验证码错误',
 									image: '../../static/error.png',
 									duration: 2000
-									// let BASE_URL
-									// let PORT
-									// if (process.env.NODE_ENV === 'development') {
-									// 	BASE_URL = _this.$store.state.localIP //本地环境 ip
-									// 	if (this.user.select === "staff") {
-									// 		PORT = _this.$store.state.localStaffPort
-									// 	} else if (this.user.select === "employee") {
-									// 		PORT = _this.$store.state.localEplPort
-									// 	} else {
-									// 		PORT = _this.$store.state.localOwnerPort
-									// 	}
-									// } else {
-									// 	BASE_URL = _this.$store.state.originIP //线上环境 线上域名
-									// 	if (this.user.select === "staff") {
-									// 		PORT = _this.$store.state.originStaffPort
-									// 	} else if (this.user.select === "employee") {
-									// 		PORT = _this.$store.state.originEplPort
-									// 	} else {
-									// 		PORT = _this.$store.state.originOwnerPort
-									// 	}
-									// }
-
-									// window.location.href = BASE_URL + ":" + PORT
-
 								});
 							}
 						}
 					});
+				
 				}
 
 			}

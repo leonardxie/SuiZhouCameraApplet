@@ -1,10 +1,16 @@
 <template>
 	<view class="home">
 		<!-- 自定义导航栏 -->
+		
 		<navbar></navbar>
 		<tab @tab="tab" :tabIndex="tabIndex" :tabItemContent="tabText"></tab>
 		<sl-filter :color="titleColor" :independence="true" :themeColor="themeColor" :menuList="menuList" @result="result" ref="filter"></sl-filter>
 		<view class="home-list">
+			<view>
+				<text class="align-center">
+					欢迎登陆！
+				</text>
+			</view>
 			<list :tab="tabText" :activeIndex="activeIndex" @change="change" ref="list"></list>
 		</view>
 		<view class="send">

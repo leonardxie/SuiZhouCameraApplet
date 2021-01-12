@@ -7,7 +7,7 @@ import './router' // 引入路由
 
 Vue.component('cu-custom',cuCustom)
 
-Vue.prototype.backendUrl = 'http://49.234.126.93:8081'
+Vue.prototype.backendUrl = 'http://49.234.126.93:8082'
 Vue.prototype.$request = request;
 
 Vue.config.productionTip = false
