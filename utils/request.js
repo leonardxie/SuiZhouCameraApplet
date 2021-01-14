@@ -14,7 +14,7 @@ ajax.interceptors.request.use(request => {
 	let sessionid = utils.getSessionID()
 	if (sessionid === '' || sessionid == null) {
 		uni.redirectTo({
-			url: '/pages/login-form/LoginForm.vue'
+			url: '/pages/Login/Login.vue'
 		});
 	}
 	request.header.Authorization = sessionid
@@ -34,7 +34,7 @@ ajax.interceptors.response.use(response => {
 			case 401:
 				utils.delSessionID();
 				uni.redirectTo({
-					url: '/pages/login-form/LoginForm.vue'
+					url: '/pages/Login/Login.vue'
 				});
 		}
 	}

@@ -23,12 +23,12 @@ guard.beforeEach((to, from, next) => {
 	let sessionid = utils.getSessionID();
 
 	console.log(to)
-	if (to.path === '/pages/login-form/LoginForm') {
+	if (to.path === '/pages/Login/Login') {
 		if (sessionid === '' || sessionid == null) {
 			next(to.url)
 		} else {
 			return next({
-				url: '/pages/login-form/LoginForm',
+				url: '/pages/Login/Login',
 				action: 'redirectTo'
 			});
 		}
@@ -36,7 +36,7 @@ guard.beforeEach((to, from, next) => {
 	} else {
 		if (sessionid === '' || sessionid == null) {
 			return next({
-				url: '/pages/login-form/LoginForm',
+				url: '/pages/Login/Login',
 				action: 'redirectTo'
 			});
 		} else {

@@ -6,73 +6,19 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white"
 			}
-		}, {
+		},
+		{
+		    "path" : "pages/Login/Login",
+		    "style" : {}
+		},
+		 {
 			"path": "pages/send/send"
 		}, {
 			"path": "pages/stafftabbar/my/my"
 		}, {
-			"path": "pages/login-form/LoginForm"
-		}, {
 			"path": "pages/login-form/ModifyForm"
-		}, {
-			"path": "pages/search/search",
-			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
-			}
-		}, {
-			"path": "pages/staff/dispatch-detail/dispatch-detail",
-			"style": {}
-		}, {
-			"path": "pages/staff/execute-detail/execute-detail",
-			"style": {}
-		}, {
-			"path": "pages/staff/check-detail/check-detail",
-			"style": {}
-		}, {
-			"path": "pages/staff/finish-detail/finish-detail",
-			"style": {}
-		}, {
-			"path": "pages/staff/deadline-detail/deadline-detail",
-			"style": {}
-		}, {
-			"path": "pages/employee/receive-detail/receive-detail",
-			"style": {}
-		}, {
-			"path": "pages/employee/execute-detail/execute-detail",
-			"style": {
-				"enablePullDownRefresh": true
-			}
-		}, {
-			"path": "pages/employee/submit-detail/submit-detail",
-			"style": {}
-		}, {
-			"path": "pages/employee/finish-detail/finish-detail",
-			"style": {}
-		}, {
-			"path": "pages/employee/deadline-detail/deadline-detail",
-			"style": {}
 		}
-        ,{
-            "path" : "pages/owner/dispatch-detail/dispatch-detail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/owner/execute-detail/execute-detail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/owner/check-detail/check-detail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/owner/finish-detail/finish-detail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/owner/deadline-detail/deadline-detail",
-            "style" : {}
-        }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

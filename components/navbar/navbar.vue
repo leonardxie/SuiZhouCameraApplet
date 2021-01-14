@@ -18,7 +18,7 @@
 					<view class="navbar-content__search-icons">
 						<uni-icons type="search"></uni-icons>
 					</view>
-					<input class="navbar-search_text" type="text" v-model="val" placeholder="请输入您要搜索的内容" confirm-type="搜索" @confirm="confirm" adjust-position="false" />
+					<!-- input class="navbar-search_text" type="text" v-model="val" placeholder="请输入您要搜索的内容" confirm-type="搜索" @confirm="confirm" adjust-position="false" /> -->
 				</view>
 			</view>
 		</view>

@@ -18,8 +18,7 @@ Date.prototype.Format = function(fmt) {
 
 //key
 let sessionIDName = "SuiZhouCameraApplet-sessionid"
-let realNameKey="Phone"
-let loginTypeKey="LoginType"
+let loginTypeKey="role"
 let userNameKey="UserName"
 let userIdKey="UserId"
 
@@ -54,35 +53,6 @@ export default {
 		uni.removeStorageSync(sessionIDName);
 	},
 	
-	//RealName
-	storageRealName(realName) {
-		let timestamp1 = (new Date()).valueOf() + 3500000;
-		uni.setStorageSync(realNameKey, realName + '|' + timestamp1);
-	},
-	
-	getRealName() {
-		const realNameAndTime = uni.getStorageSync(realNameKey);
-		return this.validateRealName(realNameAndTime)
-	},
-	
-	validateRealName(realNameAndTime) {
-		if (realNameAndTime === '' || realNameAndTime == null) {
-			return ''
-		}
-	
-		let [realName, timeoutTimestamp] = realNameAndTime.split('|')
-		let timestampNow1 = (new Date()).valueOf()
-		if (timestampNow1 >= timeoutTimestamp || realName === 'undefined') {
-			this.delRealName()
-			return ''
-		}
-	
-		return realName
-	},
-	
-	delRealName() {
-		uni.removeStorageSync(realNameKey);
-	},
 	
 	//loginType
 	storageLoginType(loginType) {
