@@ -4,6 +4,21 @@
 		<cu-custom bgColor="bg-theme-color" id="customNav">
 			<block slot="content">监控小程序</block>
 		</cu-custom>
+		<!--选项卡-->
+		<scroll-view scroll-x class="bg-white nav text-center">
+			<view class="cu-item" :class="index==TabCur?'text-blue cur':''" v-for="(item,index) in tabText" :key="index" @tap="tabSelect"
+			 :data-id="index">
+				{{item}}
+			</view>
+		</scroll-view>
+		<swiper class="depot-swiper margin-bottom" :current="TabCur" @change="SwiperChange">
+			<swiper-item class="swiper-item">
+				<!--放直播页组件-->
+			</swiper-item>
+			<swiper-item>
+				<!--放直播预告组件-->
+			</swiper-item>
+		</swiper>
 		<!--根据不同的身份显示不同的页面-->
 		<view class="send">
 			<button @click="createProject" class="cu-btn cuIcon send-button">
@@ -22,12 +37,14 @@
 		},
 		data() {
 			return {
-				loginRole:'',
 				//页面信息
 				pageInfo: {
 					name: "查看",
 					pageId: 0
-				}
+				},
+				tabText: ['车厂直播', '直播预告'],
+				TabCur: 1,
+				applyTable: [],
 			}
 		},
 		onShow() {
@@ -64,6 +81,13 @@
 					}
 				});	
 			},
+			tabSelect(e) {
+				this.TabCur = e.currentTarget.dataset.id;
+			},
+			SwiperChange(e) {
+				const current = e.detail.current
+				this.TabCur = current;
+			},
 			createProject() {
 				uni.navigateTo({
 					url: '/pages/send/send'
@@ -85,7 +109,15 @@
 		flex-direction: column;
 		flex: 1;
 		overflow: hidden;
+		
+		.depot-swiper {
+			height: 95vh;
 
+			.swiper-item {
+				height: 95%;
+				overflow: hidden;
+			}
+		}
 		.send {
 			position: absolute;
 			right: 4%;

@@ -42,9 +42,9 @@
 					success: (res) => {
 						console.log(res);
 						let Data = {
-							phone: '000000',
+							phone: '15296794930',
 							password: '123456',
-							role: 1,
+							role: 3,
 							code: res.data.data.code,
 							cToken: res.data.data.cToken,
 						};
@@ -70,6 +70,7 @@
 			},
 			// 登录
 			getuserinfo() {
+				const _this=this;
 				uni.login({
 					success(res) {
 						if (res.code) {
@@ -82,8 +83,26 @@
 									//性别 0：未知、1：男、2：女
 									const { nickName, avatarUrl, gender, province, city, country } = userInfo;
 									uni.setStorageSync('userInfo', userInfo);//本地缓存
-									uni.switchTab({
-										url: '../stafftabbar/view/view'
+									console.log(utils.getSessionID());
+									let data = {
+										avatarUrl: userInfo.avatarUrl,
+										city: userInfo.city,
+										country: userInfo.country,
+										gender: userInfo.gender,
+										nickName: userInfo.nickName,
+										province: userInfo.province
+									};
+									console.log(data);
+									//将用户的信息存入数据库
+									_this.$request.post(
+										_this.$request.baseUrl + '/public/add_mpuser', data, {
+											header: {
+												'Content-Type': 'application/json'
+											}
+										}).then(function(res) {
+											uni.switchTab({
+												url: '../stafftabbar/view/view'
+											});
 									});
 								},
 								fail: res => {

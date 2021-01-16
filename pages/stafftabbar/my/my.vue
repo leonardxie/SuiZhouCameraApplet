@@ -81,6 +81,7 @@
 		mounted(){
 		},
 		methods: {
+			
 			loginout() {
 				utils.delSessionID();
 				utils.delLoginType();
