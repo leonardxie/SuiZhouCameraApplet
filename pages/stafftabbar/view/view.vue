@@ -14,6 +14,7 @@
 		<swiper class="depot-swiper margin-bottom" :current="TabCur" @change="SwiperChange">
 			<swiper-item class="swiper-item">
 				<!--放直播页组件-->
+				<Broadcast></Broadcast>
 			</swiper-item>
 			<swiper-item>
 				<!--放直播预告组件-->
@@ -31,9 +32,11 @@
 
 <script>
 	import utils from '../../../utils/utils.js';
+	import Broadcast from '../../../components/broadcast/broadcast.vue'
 	
 	export default {
 		components: {
+			Broadcast
 		},
 		data() {
 			return {
@@ -43,7 +46,7 @@
 					pageId: 0
 				},
 				tabText: ['车厂直播', '直播预告'],
-				TabCur: 1,
+				TabCur: 0,
 				applyTable: [],
 			}
 		},
