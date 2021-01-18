@@ -2,7 +2,7 @@
 	<view class="home">
 		<!-- 自定义导航栏 -->
 		<cu-custom bgColor="bg-theme-color" id="customNav">
-			<block slot="content">监控小程序</block>
+			<block slot="content">随车吊直播</block>
 		</cu-custom>
 		<!--选项卡-->
 		<scroll-view scroll-x class="bg-white nav text-center">
@@ -18,25 +18,22 @@
 			</swiper-item>
 			<swiper-item>
 				<!--放直播预告组件-->
+				<BroadcastPreview></BroadcastPreview>
 			</swiper-item>
 		</swiper>
-		<!--根据不同的身份显示不同的页面-->
-		<view class="send">
-			<button @click="createProject" class="cu-btn cuIcon send-button">
-				<text class="cuIcon-add send-icon"></text>
-			</button>
-		</view>
 	</view>
 </template>
 
 
 <script>
 	import utils from '../../../utils/utils.js';
-	import Broadcast from '../../../components/broadcast/broadcast.vue'
+	import Broadcast from '../../../components/broadcast/broadcast.vue';
+	import BroadcastPreview from '../../../components/broadcastPreview/broadcastPreview.vue'
 	
 	export default {
 		components: {
-			Broadcast
+			Broadcast,
+			BroadcastPreview
 		},
 		data() {
 			return {

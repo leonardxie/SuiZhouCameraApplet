@@ -14,7 +14,7 @@
 				<view class="flex-sub radius">车厂地址：{{depot.address}}</view>
 			</view>
 			<view class="cu-item">
-				<view class="flex-sub radius">车厂简介：{{t_order.depotInfo}}</view>
+				<view class="flex-sub radius">车厂简介：{{depot.depotInfo}}</view>
 			</view>
 			
 		</view>

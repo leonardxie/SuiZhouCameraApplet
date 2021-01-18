@@ -4,7 +4,10 @@
 			"path": "pages/stafftabbar/view/view",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "white",
+				"app-plus":{
+					"scrollIndicator":"all"
+				}
 			}
 		},
 		{

@@ -1,8 +1,7 @@
 <template>
 	<view>
-		<view class="solid-bottom text-xl padding" style="margin-top: 70rpx;margin-bottom: 50rpx;">
-			<text>随州汽车监控小程序</text>
-			
+		<view class="solid-bottom padding" style="margin-top: 170rpx;margin-bottom: 50rpx;">
+			<text style="font-size: 30px;">随车吊直播小程序</text>
 		</view>
 	
 		<!-- 登录按钮 -->
