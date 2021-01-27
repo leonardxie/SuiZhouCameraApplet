@@ -2,7 +2,7 @@
 import createAjax from 'uni-ajax';
 import utils from './utils.js'
 
-let baseUrl = 'http://49.234.126.93:8082'
+let baseUrl = 'https://www.indulive.com:8443'
 
 // Default configuration
 const ajax = createAjax({

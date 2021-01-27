@@ -1,16 +1,34 @@
 <template>
 	<view>
-		<view class="solid-bottom padding" style="margin-top: 170rpx;margin-bottom: 50rpx;">
+		<view class="solid-bottom padding" style="margin-top: 170rpx;margin-bottom: 50rpx;margin-left: 0;margin-right: 0;">
 			<text style="font-size: 30px;">随车吊直播小程序</text>
 		</view>
 	
-		<!-- 登录按钮 -->
+		<!-- 轮播图 -->
+		<swiper class="card-swiper" :class="dotStyle?'square-dot':'round-dot'" :indicator-dots="true" :circular="true"
+				 :autoplay="true" interval="5000" duration="500" @change="cardSwiper" indicator-color="#8799a3"
+				 indicator-active-color="#0081ff">
+			<swiper-item v-for="(item,index) in swiperList" :key="index" :class="cardCur==index?'cur':''">
+				<view class="swiper-item">
+					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
+					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
+				</view>
+			</swiper-item>
+		</swiper>
 		<view>
-			<image src="../../static/car_pic.jpg" mode="aspectFit" style="width: 100%;"></image>
-			<button  class="cu-btn round bg-blue" role="button" aria-disabled="false" 
-			style="width: 80%;margin-left: 10%;margin-top: 20px;height: 100rpx;"
-				open-type="getUserInfo" @getuserinfo="getuserinfo" withCredentials="true">进入</button>
+			<button  class="cu-btn round bg-blue" role="button" aria-disabled="false"
+			style="width: 80%;margin-left: 10%;margin-top: 20px;height: 100rpx;" 
+			open-type="getUserInfo" @getuserinfo="getuserinfo" withCredentials="true">进入</button>	
 		</view>
+		<view style="position: fixed;bottom: 10%;left: 0;right:0">
+			<view class="flex justify-center">
+				<text>工业现场直播小程序设计者</text>
+			</view>
+			<view class="flex justify-center">
+				<text>随州武汉理工大学工业研究院</text>
+			</view>
+		</view>
+		
 	</view>
 </template>
 
@@ -19,12 +37,25 @@
 	export default {
 		data() {
 			return {
-				
+				cardCur: 0,
+				swiperList: [],
+				dotStyle: false,
+				towerStart: 0,
+				direction: '',
+				wh:''
 			}
+		},
+		onLoad:function(){
+			uni.getSystemInfo({
+				success: (res) => {
+					this.wh=res.windowHeight;
+				}
+			})
 		},
 		created() {
 			//直接登录
 			this.autoLogin();
+			this.getFirDir();
 		},
 		mounted: function() {
 			//页面刷新时执行
@@ -32,6 +63,7 @@
 		},
 		methods: {
 			autoLogin(){
+				const _this=this;
 				uni.request({
 					method: 'get',
 					url: this.$request.baseUrl + '/public/captcha',
@@ -61,7 +93,6 @@
 									utils.storageUserName(res.data.data.userName);
 									utils.storageUserId(res.data.data.userId);
 								}  
-								
 							}
 						});
 					}
@@ -114,6 +145,47 @@
 					  } 
 				  }
 				});
+			},
+			getFirDir() {
+			  const _this = this;
+				uni.request({
+				 	method: 'get',
+				 	url: this.$request.baseUrl + '/depot/select_carousel_list?depotId=1&orderColumn=upload_time&sortOrder=0',
+				 	header: {
+				 		'content-type': 'application/json'
+				 	},
+				 	success: (res) => {
+						const records=res.data.data;
+				 		const dirs = []
+				 		for (let i = 0; i < Object.keys(records).length; i++) {
+				 		  uni.request({
+				 		   	method: 'get',
+				 		   	url: this.$request.baseUrl + '/file/file_download_url?FileDir='+records[i].picFileDir,
+				 		   	header: {
+				 		   		'content-type': 'application/json'
+				 		   	},  
+								success: (res) => {
+				 		      console.log(res)
+									dirs.push({
+										id: i,
+										type: 'image',
+										url: res.data.msg
+									})
+				 		    }	
+							});
+						}
+						console.log('dirs:' + dirs);
+						_this.swiperList= dirs;	
+				 	},
+				});
+			},
+			
+			DotStyle(e) {
+				this.dotStyle = e.detail.value
+			},
+		// cardSwiper
+			cardSwiper(e) {
+				this.cardCur = e.detail.current
 			}
 		}
 	}

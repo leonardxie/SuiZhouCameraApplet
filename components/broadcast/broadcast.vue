@@ -33,27 +33,40 @@
 			<view class="flex solid-bottom padding-xs justify-center" style="margin: auto;">
 				<view class="radius text-bold" style="text-align: center;">视频播放区</view>
 			</view>
-			<video id='myVideo' 
+			<yfsVideo 
+			    :src="src" 
+			    :danmu-list="danmuList" 
+			    :videoTitle="videoTitle"
+					:enable-danmu="false"
+					></yfsVideo>
+			<!-- <video id='myVideo' 
 			  autoplay="true" :src="src"
-			 controls page-gesture show-mute-btn show-fullscreen-btn  direction=90
+			 controls page-gesture show-mute-btn show-fullscreen-btn  direction='90'
 			 object-fit="contain" play-btn-position="center"
 			 show-casting-button="true" picture-in-picture-mode=" ['push', 'pop']" enable-auto-rotation="true"
 			 style="margin: auto;width: 350px;height: 225px;"
-			 @fullscreenchange="fullscreenchange()"></video>
-			 <view>{{}}</view>
+			 @fullscreenchange="fullscreenchange()"></video> -->
 		</view>
 	</view>
 </template>
 
 <script> 
+import yfsVideo from '../yfs-video/yfs-video.vue';
 	export default {
+		components:{
+			yfsVideo
+		},
 		data() {
 			return {
+				src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+				danmuList: [],
+				videoCurrTime:0,
+				videoTitle:"",
 				scrollTop:0,
 				old: {
 				  scrollTop: 0
 				},
-				src: '',
+				//src: '',
 				broadcastData:{
 					createTime: "",
 					depotId: 1,
@@ -100,7 +113,8 @@
 					}
 				).then(function(res) {
 					_this.broadcastData=res.data.data;
-					for(let i=1;i<=_this.broadcastData.length;i++){
+					var obj=res.data.data;
+					for(let i=1;i<=Object.keys(obj).length;i++){
 						_this.broadcastData[i-1].imgUrl='../../static/'+i+'.jpg';
 					}
 				});
@@ -109,11 +123,13 @@
 				this.src=this.broadcastData[index].deviceLink;
 				
 			},
-			fullscreenchange(){
-				// 获取 video 上下文 videoContext 对象
+			fullscreenchange(e){
+				console.log(e);
 				this.videoContext = uni.createVideoContext('myVideo');
-				// 进入全屏状态
 				this.videoContext.requestFullScreen();
+			},
+			getTimeVideo:function(e){
+			  console.log(e);
 			},
 		}
 	}
