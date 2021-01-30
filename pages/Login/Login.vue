@@ -156,20 +156,31 @@
 				 	},
 				 	success: (res) => {
 						const records=res.data.data;
+						console.log(Object.keys(records).length);
 				 		const dirs = []
 				 		for (let i = 0; i < Object.keys(records).length; i++) {
 				 		  uni.request({
 				 		   	method: 'get',
-				 		   	url: this.$request.baseUrl + '/file/file_download_url?FileDir='+records[i].picFileDir,
+				 		   	url: _this.$request.baseUrl + '/file/file_download_url?FileDir='+records[i].picFileDir,
 				 		   	header: {
 				 		   		'content-type': 'application/json'
 				 		   	},  
-								success: (res) => {
-				 		      console.log(res)
+								success: (res1) => {
+									var result=res1.data.msg;
+									if(result[24]==4){
+										var subStr=new RegExp('http://www.indulive.com:443','ig');//创建正则表达式对象,不区分大小写,全局查找
+										var place=result.replace(subStr,"https://www.indulive.com:443");//把'is'替换为空字符串
+										console.log(place); //th all there 
+										result=place;
+									}
+									
+									// const disLength = result.length;
+									// const shortName = result.substring(disLength-7,disLength);
+									//console.log(result[24]);
 									dirs.push({
 										id: i,
 										type: 'image',
-										url: res.data.msg
+										url: result
 									})
 				 		    }	
 							});
