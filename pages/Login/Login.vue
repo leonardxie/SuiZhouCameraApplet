@@ -1,8 +1,13 @@
 <template>
 	<view>
-		<view class="solid-bottom padding" style="margin-top: 170rpx;margin-bottom: 50rpx;margin-left: 0;margin-right: 0;">
-			<text style="font-size: 30px;">随车吊直播小程序</text>
+		<view class='solid-bottom padding' style="left: 0;right:0;margin-top: 170rpx;margin-bottom: 50rpx;">
+			<view class="flex justify-center">
+				<text style="font-size: 25px;display: inline-block;">神百随车吊——</text><text style="font-size: 23px;display: inline-block;">千里眼</text>
+			</view>
 		</view>
+		<!-- <view class="solid-bottom padding" style="margin-top: 170rpx;margin-bottom: 50rpx;margin-left: 0;margin-right: 0;">
+			<text style="font-size: 25px;">神百随车吊——千里眼</text>
+		</view> -->
 	
 		<!-- 轮播图 -->
 		<swiper class="card-swiper" :class="dotStyle?'square-dot':'round-dot'" :indicator-dots="true" :circular="true"
@@ -22,10 +27,10 @@
 		</view>
 		<view style="position: fixed;bottom: 10%;left: 0;right:0">
 			<view class="flex justify-center">
-				<text>工业现场直播小程序设计者</text>
+				<text style="font-size: 16px;">湖北神百专用汽车有限公司</text>
 			</view>
 			<view class="flex justify-center">
-				<text>随州武汉理工大学工业研究院</text>
+				<text style="font-size: 16px;">随州武汉理工大学工业研究院</text>
 			</view>
 		</view>
 		
