@@ -15,7 +15,7 @@
 				 indicator-active-color="#0081ff">
 			<swiper-item v-for="(item,index) in swiperList" :key="index" :class="cardCur==index?'cur':''">
 				<view class="swiper-item">
-					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
+					<image class="swiper-image" :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
 					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 				</view>
 			</swiper-item>
@@ -208,4 +208,8 @@
 </script>
 
 <style>
+	.card-swiper{
+		height: 550rpx !important;
+	}
+	
 </style>
