@@ -8,7 +8,6 @@
 			
 			<view class="cu-item">
 				<view class="flex-sub radius">车厂名称：{{depot.depotName}}</view>
-				<view class="flex-sub radius">联系方式：{{depot.phone}}</view>
 			</view>
 			<view class="cu-item">
 				<view class="flex-sub radius">车厂地址：{{depot.address}}</view>

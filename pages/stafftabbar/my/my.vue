@@ -19,18 +19,7 @@
 		<FactoryInformation></FactoryInformation>
 		<!-- 列表 --> 
 		<view class="cu-list menu margin-top">
-			<view class="cu-item">
-				<navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
-					<text class="text-grey">帮助中心</text>
-					<text class="cuIcon-questionfill lg text-gray" style="float: right;"></text>
-				</navigator>
-			</view>
-			<view class="cu-item">
-				<navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
-					<text class="text-grey">设置</text>
-					<text class="cuIcon-settingsfill lg text-gray" style="float: right;"></text>
-				</navigator>
-			</view>
+			
 			
 		</view>
 		<view class="flex">
