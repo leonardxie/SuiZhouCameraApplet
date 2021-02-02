@@ -2,7 +2,7 @@
 	<view>
 		<view class='solid-bottom padding' style="left: 0;right:0;margin-top: 170rpx;margin-bottom: 50rpx;">
 			<view class="flex justify-center">
-				<text style="font-size: 25px;display: inline-block;">神百随车吊——</text><text style="font-size: 23px;display: inline-block;">千里眼</text>
+				<text style="font-size: 25px;display: inline-block;">神百随车吊—— </text><text style="font-size: 25px;display: inline-block;">千里眼</text>
 			</view>
 		</view>
 		<!-- <view class="solid-bottom padding" style="margin-top: 170rpx;margin-bottom: 50rpx;margin-left: 0;margin-right: 0;">
