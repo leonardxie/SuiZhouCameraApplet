@@ -44,12 +44,12 @@
     },
     "quickapp" : {},
     "mp-weixin" : {
-        "appid" : "wx0447013f238f073e",
+        "appid" : "wxee181c74455ae83c",
         "setting" : {
-            "urlCheck" : false,
+            "urlCheck" : true,
             "es6" : false,
-            "minified" : false,
-            "postcss" : false
+            "minified" : true,
+            "postcss" : true
         },
         "permission" : {}
     }
