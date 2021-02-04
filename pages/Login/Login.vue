@@ -50,15 +50,15 @@
 				wh:''
 			}
 		},
-		onShareAppMessage(res) {
-		  if (res.from === 'button') {// 来自页面内分享按钮
-		    console.log(res.target)
-		  }
-		  return {
-		    title: '自定义分享标题',
-		    path: 'pages/Login/Login'
-		  }
-		},
+		// onShareAppMessage(res) {
+		//   if (res.from === 'button') {// 来自页面内分享按钮
+		//     console.log(res.target)
+		//   }
+		//   return {
+		//     title: '自定义分享标题',
+		//     path: 'pages/Login/Login'
+		//   }
+		// },
 		onLoad:function(){
 			uni.getSystemInfo({
 				success: (res) => {
@@ -87,7 +87,7 @@
 					success: (res) => {
 						console.log(res);
 						let Data = {
-							phone: '15296794930',
+							phone: '13872855055',
 							password: '123456',
 							role: 3,
 							code: res.data.data.code,
