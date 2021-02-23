@@ -154,7 +154,7 @@ export default {
 		},
 		autoplay:{//是否自播放
 			type:Boolean,
-			default:false
+			default:true
 		},
 		loop:{//是否循环播放
 			type:Boolean,

@@ -187,7 +187,6 @@
 										console.log(place); //th all there 
 										result=place;
 									}
-									
 									// const disLength = result.length;
 									// const shortName = result.substring(disLength-7,disLength);
 									//console.log(result[24]);

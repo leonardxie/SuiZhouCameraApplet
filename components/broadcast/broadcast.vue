@@ -39,6 +39,10 @@
 			    :videoTitle="videoTitle"
 					:enable-danmu="false"
 					></yfsVideo>
+			<view class="flex-sub  padding-sm margin-xs radius">
+				<button  class="cu-btn bg-blue lg" role="button" aria-disabled="false" @click="broadcastIntroduction"
+					style="width: 80%;margin-left: 10%;">车厂简介</button>
+			</view>
 			<!-- <video id='myVideo' 
 			  autoplay="true" :src="src"
 			 controls page-gesture show-mute-btn show-fullscreen-btn  direction='90'
@@ -88,6 +92,7 @@ import yfsVideo from '../yfs-video/yfs-video.vue';
 		created() {
 			//获取直播列表
 			this.getDevice();
+			//this.getvideoIntroduction();
 		},
 		methods:{
 			upper: function(e) {          
@@ -131,6 +136,11 @@ import yfsVideo from '../yfs-video/yfs-video.vue';
 			getTimeVideo:function(e){
 			  console.log(e);
 			},
+			broadcastIntroduction(){
+				this.src='';
+				this.src='https://www.indulive.com:443/dep/introduction.mp4';
+				
+			}
 		}
 	}
 </script>

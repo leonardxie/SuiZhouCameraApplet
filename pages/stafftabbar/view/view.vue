@@ -5,7 +5,7 @@
 			<block slot="content">随车吊直播</block>
 		</cu-custom>
 		<!--选项卡-->
-		<scroll-view scroll-x class="bg-white nav text-center">
+		<scroll-view scroll-x scroll-y class="bg-white nav text-center">
 			<view class="cu-item" :class="index==TabCur?'text-blue cur':''" v-for="(item,index) in tabText" :key="index" @tap="tabSelect"
 			 :data-id="index">
 				{{item}}
@@ -99,9 +99,9 @@
 
 <style lang="scss">
 	page {
-		height: 100%;
 		display: flex;
 		overflow-x: hidden;
+		overflow-y:auto;
 	}
 
 	.home {
