@@ -26,11 +26,22 @@
 			open-type="getUserInfo" @getuserinfo="getuserinfo" withCredentials="true">进入</button>	
 		</view>
 		<view style="position: fixed;bottom: 10%;left: 0;right:0">
-			<view class="flex justify-center">
+			<view class="flex justify-center margin-top">
 				<text style="font-size: 16px;">湖北神百专用汽车有限公司</text>
 			</view>
 			<view class="flex justify-center">
 				<text style="font-size: 16px;">随州武汉理工大学工业研究院</text>
+			</view>
+		</view>
+		<view style="position: fixed;bottom: 3%;left: 0;right:0">
+			<view class="flex justify-center margin-top">
+				<text style="font-size: 12px;">本微信小程序涉及公司机密</text>
+			</view>
+			<view class="flex justify-center">
+				<text style="font-size: 12px;">仅供神百专用汽车有限公司内部人员使用</text>
+			</view>
+			<view class="flex justify-center">
+				<text style="font-size: 12px;">使用需记录使用人员账号基础信息</text>
 			</view>
 		</view>
 		
@@ -50,6 +61,12 @@
 				wh:''
 			}
 		},
+		onShareAppMessage(){
+			return {
+				from:"menu"
+			}
+		},
+		onShareTimeline(){},
 		// onShareAppMessage(res) {
 		//   if (res.from === 'button') {// 来自页面内分享按钮
 		//     console.log(res.target)
@@ -181,12 +198,11 @@
 				 		   	},  
 								success: (res1) => {
 									var result=res1.data.msg;
-									if(result[24]==4){
-										var subStr=new RegExp('http://www.indulive.com:443','ig');//创建正则表达式对象,不区分大小写,全局查找
-										var place=result.replace(subStr,"https://www.indulive.com:443");//把'is'替换为空字符串
+									//将本地ip换位服务器ip
+										var subStr=new RegExp('http://127.0.0.1','ig');//创建正则表达式对象,不区分大小写,全局查找
+										var place=result.replace(subStr,"http://119.96.238.125");//把'is'替换为空字符串
 										console.log(place); //th all there 
 										result=place;
-									}
 									// const disLength = result.length;
 									// const shortName = result.substring(disLength-7,disLength);
 									//console.log(result[24]);

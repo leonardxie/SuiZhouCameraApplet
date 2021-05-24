@@ -264,10 +264,10 @@ export default {
     },
     methods: {
         videoErrorCallback: function(e) {//视频加载错误
-            uni.showModal({
-                content: e.target.errMsg,
-                showCancel: false
-            })
+            // uni.showModal({
+            //     content: e.target.errMsg,
+            //     showCancel: false
+            // })
         },
 		sendDanMu:function(obj){//发送弹幕
 			this.videoCtx.sendDanmu(obj);

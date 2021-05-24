@@ -55,6 +55,12 @@
 				},
 			}
 		},
+		onShareAppMessage(){
+			return {
+				from:"menu"
+			}
+		},
+		onShareTimeline(){},
 		onShow() {
 			getApp().globalData.tabIndex = this.pageInfo.pageId;
 		},

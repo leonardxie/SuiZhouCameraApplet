@@ -54,6 +54,12 @@
 			this.justEverLogin()
 			this.GetData()
 		},
+		onShareAppMessage(){
+			return {
+				from:"menu"
+			}
+		},
+		onShareTimeline(){},
 		methods: {
 			justEverLogin(){
 				//数据库中查询是否有此用户信息

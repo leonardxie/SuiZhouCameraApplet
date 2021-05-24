@@ -1,5 +1,20 @@
 <template>
 	<view>
+		<!--直播视频区域-->
+		<view class="bg-white">
+			<!-- <view class="flex solid-bottom padding-xs justify-center" style="margin: auto;">
+				<view class="radius text-bold" style="text-align: center;">视频播放区</view>
+			</view> -->
+			<yfsVideo 
+			    :src="src" 
+			    :danmu-list="danmuList" 
+			    :videoTitle="videoTitle"
+					:enable-danmu="false"
+					></yfsVideo>
+			<view class="flex-sub  padding-sm margin-xs radius">
+				<button  class="cu-btn bg-blue lg" role="button" aria-disabled="false" @click="broadcastIntroduction"
+					style="width: 80%;margin-left: 10%;">车厂简介</button>
+			</view>
 		<!--直播列表区域-->
 		<view class="bg-white" style="margin-top: 10px;">
 			<view class="flex solid-bottom padding-xs justify-center" style="margin: auto;">
@@ -28,21 +43,7 @@
 				</view>
 			</scroll-view>	
 		</view>	
-		<!--直播视频区域-->
-		<view class="bg-white" style="margin-top: 30px;">
-			<view class="flex solid-bottom padding-xs justify-center" style="margin: auto;">
-				<view class="radius text-bold" style="text-align: center;">视频播放区</view>
-			</view>
-			<yfsVideo 
-			    :src="src" 
-			    :danmu-list="danmuList" 
-			    :videoTitle="videoTitle"
-					:enable-danmu="false"
-					></yfsVideo>
-			<view class="flex-sub  padding-sm margin-xs radius">
-				<button  class="cu-btn bg-blue lg" role="button" aria-disabled="false" @click="broadcastIntroduction"
-					style="width: 80%;margin-left: 10%;">车厂简介</button>
-			</view>
+		
 			<!-- <video id='myVideo' 
 			  autoplay="true" :src="src"
 			 controls page-gesture show-mute-btn show-fullscreen-btn  direction='90'
@@ -138,7 +139,7 @@ import yfsVideo from '../yfs-video/yfs-video.vue';
 			},
 			broadcastIntroduction(){
 				this.src='';
-				this.src='https://www.indulive.com:443/dep/introduction.mp4';
+				this.src='https://zb.whut-yj.com/dep/introduction.mp4';
 				
 			}
 		}
