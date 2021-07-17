@@ -138,10 +138,42 @@ import yfsVideo from '../yfs-video/yfs-video.vue';
 			  console.log(e);
 			},
 			broadcastIntroduction(){
-				this.src='';
-				this.src='https://zb.whut-yj.com/dep/introduction.mp4';
-				
-			}
+			    this.src='';
+			    
+			    // this.src='http://zb.whut-yj.com:8082/video/video2021-06-09-05-12-03.mp4';
+			    const _this = this;
+			    this.$request.get(
+			     this.$request.baseUrl + '/depot_admin/select_depot_video?depotId=1' , {
+			      header: {
+			       'Content-Type': 'application/x-www-form-urlencoded'
+			      }
+			     }
+			    ).then(function(res) {
+			     _this.filepath=res.data.data.videoFileDir
+			     console.log(_this.filepath)
+			     // console.log(_this.filepath+"第二次输出的信息");
+			     const that=_this
+			     _this.$request.get(
+			         _this.$request.baseUrl + '/file/file_download_url?FileDir='+_this.filepath , {
+			          header: {
+			           'Content-Type': 'application/x-www-form-urlencoded',
+			        
+			          }
+			       
+			         } 
+			     ).then(function(res) {
+			      console.log(res)
+			      let result=res.data.msg
+			      var subStr=new RegExp('http://127.0.0.1','ig');//创建正则表达式对象,不区分大小写,全局查找
+			      var place=result.replace(subStr,"http://119.96.238.125");//把'is'替换为空字符串
+			      console.log(place); //th all there 
+			      that.src=place
+			      
+			      console.log(res.data.msg)
+			     });
+			    });			    
+			   }
+			
 		}
 	}
 </script>
